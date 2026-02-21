@@ -1,0 +1,142 @@
+body{
+    background:black;
+    /* overflow-y: hidden; */
+}
+
+.submit-div{
+    margin-top: 200px;
+    color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+}
+
+.quiz-form {
+    margin-top: 200px;
+    color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    
+}
+
+.quiz-form h1{
+    font-family: "Inter";
+    font-size:clamp(2rem, 3.84vw, 3.125rem);
+}
+
+.answers{
+    text-align:start;
+    padding: 10px 25px 10px;
+    margin: 5px;
+    max-width: 1000px;
+    width:500px;
+    font-family: "Inter";
+    font-size: clamp(0.9rem,1.20vw, 1.3rem);
+    border-radius:50px;
+    border:none;
+   
+}
+
+.submit{
+    text-align:start;
+    padding: 10px 25px 10px;
+    margin-top: 50px;
+    max-width: 1000px;
+    width:auto;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px 35px;
+    font-size: clamp(0.925rem,10.6vw, 1.25rem);
+    border-radius:50px;
+    border:none;
+    
+}
+
+.answers:hover{
+    background-color:yellow;
+    cursor: pointer;
+   
+}
+
+.quiz-intro h1{
+    font-size:clamp(2rem, 3.84vw, 3.125rem);
+    
+}
+
+.quiz-intro p{
+    font-size: clamp(0.9rem, 1.20vw, 1.3rem);
+    line-height:30px;
+    padding: 0px 100px 0px; 
+}
+
+.quiz-intro{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    font-family: "Inter";
+    color: white;
+    /* height:100vh; */
+    
+}
+
+.quiz-intro button{
+    font-size:25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px 35px;
+    border:none;
+    border-radius: 30px;
+    background-color: black;
+    color:white;
+    margin-top:40px;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    font-size:clamp(1.2rem, 2vw, 1.5rem);
+}
+
+
+@property --angle{
+    syntax:"<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.quiz-intro button::before, .quiz-intro button::after{
+    content: '';
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    border-radius:30px;
+    background-image: conic-gradient(from var(--angle), transparent 70%,white);
+    z-index: -1;
+    padding: 5px;
+    animation: 3s spin linear infinite;
+}
+
+.quiz-intro button::before{
+    filter: blur(1.5rem);
+    opacity: 1;
+}
+
+.quiz-intro button:hover{
+    background-color: white;
+    color:black;
+    cursor:pointer;
+}
+
+@keyframes spin {
+    from{
+    --angle: 0deg;
+    }
+    to{
+    --angle: 360deg;
+    }
+}
