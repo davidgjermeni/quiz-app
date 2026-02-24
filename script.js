@@ -45,11 +45,12 @@ const questions = [{
 ];
 
 const startBtn = document.getElementById("start");
-const intro = document.getElementsByClassName(".quiz-intro");
-const questionForm = document.getElementsByClassName(".quiz-form");
+const intro = document.querySelector(".quiz-intro");
+const questionForm = document.querySelector(".quiz-form");
 
-questionForm.style.display="none";
 startBtn.addEventListener("click", () => {
+  intro.classList.add("hidden"); 
+  questionForm.classList.remove("hidden");
   
 });
 
@@ -78,6 +79,11 @@ function showQuestion(){
     button.innerHTML = answer.text;
     button.classList.add("answersBtn");
     answerElement.appendChild(button);
+
+    if (answer.correct){
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
   });
 
 }
@@ -88,6 +94,25 @@ function resetState(){
     answerElement.removeChild(answerElement.firstChild);
   }
 
+}
+
+function selectAnswer(e){
+  const selectedBtn = e.target.closest("button");
+  const isCorrect = selectedBtn.dataset.correct === "true";
+  selectedBtn.classList.add(isCorrect? "correct" : "incorrect");
+  if(!isCorrect){
+    Array.from(answerElement.children)
+    .find(btn => btn.dataset.correct === "true")
+    .classList.add("correct");
+      }
+  disableButtons();
+}
+  
+
+function disableButtons(){ 
+  answerElement.querySelectorAll("button").forEach(btn => {
+    btn.disabled = "true";
+  });
 }
 
 startQuiz();

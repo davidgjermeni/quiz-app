@@ -1,6 +1,6 @@
 body{
     background:black;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
 }
 
 /* .submit-div{
@@ -14,17 +14,18 @@ body{
 } */
 
 .quiz-form {
-    margin-top: 100px;
     color:white;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height:100vh;
    
     
 }
 
 .answers{
+    margin-top: 100px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -37,8 +38,10 @@ body{
 
 
 .quiz-form h1{
+    text-align:center;
     font-family: "Inter";
     font-size:clamp(2rem, 3.84vw, 3.125rem);
+    padding: 0 300px 0;
 }
 
 .answersBtn{
@@ -68,14 +71,32 @@ body{
     
 }
 
-.answersBtn:hover{
+.answersBtn:not(:disabled):hover{
     background-color:yellow;
     cursor: pointer;
    
 }
 
+.answersBtn.correct:disabled {
+  pointer-events: none;
+  background-color: green;
+  color:black;
+}
+
+.answersBtn.incorrect:disabled {
+  pointer-events: none;
+  background-color: red;
+  color:black;
+}
+
+.answersBtn:disabled {
+  pointer-events: none;
+  background-color: white;
+  color:black;
+}
+
 .quiz-intro h1{
-    font-size:clamp(2rem, 3.84vw, 3.125rem);
+    font-size: clamp(2rem, 3.84vw, 3.125rem);
     
 }
 
@@ -93,7 +114,7 @@ body{
     text-align:center;
     font-family: "Inter";
     color: white;
-    /* height:100vh; */
+    height:100vh;
     
 }
 
@@ -152,3 +173,18 @@ body{
     --angle: 360deg;
     }
 }
+
+.hidden{
+    display:none;
+}
+
+.correct{
+    background-color:green;
+}
+
+.incorrect{
+    background-color:red;
+}
+
+
+
