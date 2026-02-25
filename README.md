@@ -5,7 +5,6 @@ The user will be initially presented with a "start" button and some detail about
 
 When the user presses start they're presented with the first multiple choice question.
 
-The questions are to be presented as cards with the answers being buttons on the card.
 
 When the user selects an answer, the answer buttons are to turn red or green depending on the result. It should also show what the correct answer was.
 
