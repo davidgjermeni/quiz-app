@@ -12,4 +12,4 @@ If the user answers correctly, a score is to be incremented.
 
 At the end of the quiz, the user is presented with a final score and all of the results.
 
-Optionally add a timer of 1 minute to each question, if user doesn't attempt the question in that time, it should skip to next question and score should be decremented by 1.
+Optionally add a timer of (seconds) to each question, if user doesn't attempt the question in that time, it should skip to next question and score should be decremented by 1.
