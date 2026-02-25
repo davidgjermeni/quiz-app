@@ -11,21 +11,27 @@
 <div class="quiz-intro">
     <h1 class="header-intro">Quiz App</h1>
     <p>Welcome!</p>
-    <p>This is a multiple choice quiz test about random stuff, something like the game show "who wants to be a millionaire".</p>
-    <p>For every correct answer the score will be incremented by 1.</p>
-    <p>For every wrong answer the score will be decremented by 1.</p>
+    <p>This is a multiple choice quiz test about random topics.</p>
+    <p>For every correct answer the score will be incremented by 25 points.</p>
+    <p>For every wrong answer or the timer ends, the score will be decremented by 25 points.</p>
     <button id="start">Start</button>
 </div>
 
-<div class="quiz-form hidden" id="quiz-form">
-    <h1 class="question" id="question">Question 1</h1>
-    <div class="answers" id="answers">
-    <button class="answersBtn" id="answersBtn">eadsrfsgersgeryg</button>
-    <button class="answersBtn" id="answersBtn">SDTGwsrgewryetrhetayhe</button>
-    <button class="answersBtn" id="answersBtn">answerygearyter</button>
-    <button class="answersBtn" id="answersBtn">answegrerer</button>
+<div class="quiz-form remove" id="quiz-form">
+    <h1 id="timeleft">7</h1>
+    <div class="quiz " id="quiz" >
+        <h2 class="question" id="question">Question 1</h2>
+        <div class="answers" id="answers">
+            <button class="answersBtn" id="answersBtn">eadsrfsgersgeryg</button>
+            <button class="answersBtn" id="answersBtn">SDTGwsrgewryetrhetayhe</button>
+            <button class="answersBtn" id="answersBtn">answerygearyter</button>
+            <button class="answersBtn" id="answersBtn">answegrerer</button>
     </div>
-    <button class="nextBtn" id="nextBtn">Submit</button>
+    <button class="nextBtn" id="nextBtn"></button>
+    </div>
+</div>
+<div class="scoreSection">
+<p  id="score"></p>
 </div>
 
 <script src="script.js"></script>

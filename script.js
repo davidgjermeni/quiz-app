@@ -34,9 +34,9 @@ const questions = [{
 {
     question:"How many planets do we have in our solar system?",
     answers:[
+      {text: "6 planets", correct: false},
       {text: "8 planets", correct: true},
       {text: "9 planets", correct: false},
-      {text: "6 planets", correct: false},
       {text: "10 planets", correct: false}  
     ]
 
@@ -49,27 +49,38 @@ const intro = document.querySelector(".quiz-intro");
 const questionForm = document.querySelector(".quiz-form");
 
 startBtn.addEventListener("click", () => {
-  intro.classList.add("hidden"); 
-  questionForm.classList.remove("hidden");
+  intro.classList.add("remove"); 
+  questionForm.classList.remove("remove");
   
 });
 
 const questionElement = document.getElementById("question");
 const answerElement = document.getElementById("answers");
 const nextBtn = document.getElementById("nextBtn");
+const scoreInfo = document.getElementById("score");
+const timeleft = document.getElementById("timeleft");
+const start = document.getElementById("start");
 
 let currentIndex = 0;
 let score = 0;
+let correctQuestions = 0;
+let interval;
+
+start.addEventListener("click", startQuiz);
 
 function startQuiz(){
   currentIndex = 0;
   score = 0;
+  correctQuestions = 0;
   nextBtn.innerHTML = "Next";
   showQuestion()
 }
 
 function showQuestion(){
+  timer(7);
   resetState();
+  timeleft.classList.remove("hide");
+  scoreInfo.classList.remove("hide");
   let currentQuestion = questions[currentIndex];
   let questionNo = currentIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -89,7 +100,10 @@ function showQuestion(){
 }
 
 function resetState(){ 
-  nextBtn.style.display = "none";
+  nextBtn.classList.add("hide");
+  timeleft.classList.add("hide");
+  scoreInfo.classList.add("hide");
+  scoreInfo.innerHTML = `Score: ${score}`;
   while(answerElement.firstChild){
     answerElement.removeChild(answerElement.firstChild);
   }
@@ -97,22 +111,67 @@ function resetState(){
 }
 
 function selectAnswer(e){
+  clearInterval(interval);
   const selectedBtn = e.target.closest("button");
   const isCorrect = selectedBtn.dataset.correct === "true";
-  selectedBtn.classList.add(isCorrect? "correct" : "incorrect");
-  if(!isCorrect){
-    Array.from(answerElement.children)
-    .find(btn => btn.dataset.correct === "true")
-    .classList.add("correct");
-      }
-  disableButtons();
+  if(isCorrect){
+    selectedBtn.classList.add("correct");
+    score += 25;
+    correctQuestions++;
+  }else{
+    selectedBtn.classList.add("incorrect");
+    score = Math.max(0, score - 25);
+  }
+  scoreInfo.innerHTML = `Score: ${score}`
+  Array.from(answerElement.children).forEach(btn => {
+  if(btn.dataset.correct === "true"){
+    btn.classList.add("correct");
+  }
+  btn.disabled = true;
+    });
+ 
+nextBtn.style.visibility="visible";
 }
+
+function showScore(){
+  resetState();
+  questionElement.innerHTML = `You answered ${correctQuestions} out of ${questions.length} questions correctly. <br>Your score is ${score} out of 100.`;
+  nextBtn.innerHTML = "Play  Again";
+  nextBtn.style.visibility = "visible";
+}
+
+function handleNextButton(){
+  currentIndex++;
+  if (currentIndex < questions.length){
+    showQuestion();
+  }else{
+    showScore();
+  }
   
-
-function disableButtons(){ 
-  answerElement.querySelectorAll("button").forEach(btn => {
-    btn.disabled = "true";
-  });
 }
 
-startQuiz();
+nextBtn.addEventListener("click", () => { 
+  if(currentIndex < questions.length){
+    handleNextButton();
+  }else{
+    startQuiz();
+  }
+});
+
+
+function timer(seconds){
+  clearInterval(interval);
+  timeleft.innerHTML = seconds;
+  let time = seconds;
+  interval = setInterval(() => {
+    time = Math.max(0, time - 1)
+    timeleft.innerHTML = time;
+  
+    if (time <= 0){
+      clearInterval(interval);
+      currentIndex++;
+      score = Math.max(0, score - 25);
+      showQuestion();
+    }
+  },1000)
+}

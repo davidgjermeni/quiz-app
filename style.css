@@ -3,23 +3,15 @@ body{
     overflow-y: hidden;
 }
 
-/* .submit-div{
-    margin-top: 200px;
-    color:white;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 10px;
-} */
 
-.quiz-form {
+
+.quiz-form, .quiz {
     color:white;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height:100vh;
+    height:92vh;
    
     
 }
@@ -32,16 +24,21 @@ body{
     align-items: center;
 }
 
-.nextBtn{
-    margin-top:30px;
-}
 
+
+
+.quiz-form h2{
+    text-align:center;
+    font-family: "Inter";
+    font-size:clamp(2rem, 3.84vw, 3.125rem);
+    padding: 0 200px 0;
+}
 
 .quiz-form h1{
     text-align:center;
     font-family: "Inter";
-    font-size:clamp(2rem, 3.84vw, 3.125rem);
-    padding: 0 300px 0;
+    font-size:clamp(2rem, 2vw, 3.125rem);
+    padding: 0 200px 0;
 }
 
 .answersBtn{
@@ -57,7 +54,7 @@ body{
    
 }
 
-.submit{
+.nextBtn{
     text-align:start;
     padding: 10px 25px 10px;
     margin-top: 50px;
@@ -71,6 +68,11 @@ body{
     
 }
 
+.nextBtn:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
+
 .answersBtn:not(:disabled):hover{
     background-color:yellow;
     cursor: pointer;
@@ -78,20 +80,23 @@ body{
 }
 
 .answersBtn.correct:disabled {
-  pointer-events: none;
+  cursor: no-drop;
   background-color: green;
   color:black;
+  pointer-events: no-drop;
+  
 }
 
 .answersBtn.incorrect:disabled {
-  pointer-events: none;
+  cursor: no-drop;
   background-color: red;
   color:black;
+  
 }
 
 .answersBtn:disabled {
-  pointer-events: none;
-  background-color: white;
+  cursor: no-drop;
+  background-color: lightgrey;
   color:black;
 }
 
@@ -165,6 +170,15 @@ body{
     cursor:pointer;
 }
 
+.scoreSection{
+    color:white;
+    font-family: "inter";
+    font-size:25px;
+    bottom:0px;
+    left:0px;
+    height:8vh;
+}
+
 @keyframes spin {
     from{
     --angle: 0deg;
@@ -174,8 +188,12 @@ body{
     }
 }
 
-.hidden{
+.remove{
     display:none;
+}
+
+.hide{
+    visibility:hidden;
 }
 
 .correct{
