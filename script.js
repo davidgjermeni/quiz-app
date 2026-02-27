@@ -166,12 +166,18 @@ function timer(seconds){
   interval = setInterval(() => {
     time = Math.max(0, time - 1)
     timeleft.innerHTML = time;
-  
+
+    
     if (time <= 0){
       clearInterval(interval);
       currentIndex++;
       score = Math.max(0, score - 25);
-      showQuestion();
+      if (currentIndex >= questions.length){
+        showScore();
+      }else{
+        showQuestion();
+      }
+      
     }
   },1000)
 }
