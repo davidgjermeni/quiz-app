@@ -172,11 +172,8 @@ function timer(seconds){
       clearInterval(interval);
       currentIndex++;
       score = Math.max(0, score - 25);
-      if (currentIndex >= questions.length){
-        showScore();
-      }else{
-        showQuestion();
-      }
+      (currentIndex >= questions.length ? showScore() : showQuestion() );
+      
       
     }
   },1000)
